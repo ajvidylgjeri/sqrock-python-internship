@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Appointments — Sqrock Hospital{% endblock %}
+{% block content %}
+<h1>Appointments</h1>
+<div class="grid2">
+  <form method="post" class="panel">
+    <h3>Book appointment</h3>
+    <label>Patient *
+      <select name="patient_id" required>
+        <option value="" disabled selected>Choose patient…</option>
+        {% for p in patients %}<option value="{{ p.id }}">{{ p.name }}</option>{% endfor %}
+      </select>
+    </label>
+    <label>Doctor *
+      <select name="doctor_id" required>
+        <option value="" disabled selected>Choose doctor…</option>
+        {% for d in doctors %}<option value="{{ d.id }}">{{ d.name }}</option>{% endfor %}
+      </select>
+    </label>
+    <label>Date<input name="date" type="date" value="{{ today }}"></label>
+    <button class="btn">Book</button>
+  </form>
+
+  <div class="panel">
+    <table>
+      <thead><tr><th>Date</th><th>Patient</th><th>Doctor</th><th>Status</th><th></th></tr></thead>
+      <tbody>
+        {% for a in rows %}
+          <tr>
+            <td>{{ a.date }}</td><td>{{ a.patient }}</td><td>{{ a.doctor }}</td>
+            <td><span class="badge badge--{{ a.status|lower }}">{{ a.status }}</span></td>
+            <td>{% if a.status != 'Completed' %}
+              <form method="post" action="{{ url_for('complete_appointment', aid=a.id) }}"><button class="btn btn--sm">Done</button></form>
+            {% endif %}</td>
+          </tr>
+        {% else %}
+          <tr><td colspan="5" class="empty">No appointments yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

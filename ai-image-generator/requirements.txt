@@ -1,0 +1,4 @@
+Flask>=3.0
+Pillow>=10.0
+# Optional — only needed if you wire up a real image API in live_image():
+# requests>=2.31

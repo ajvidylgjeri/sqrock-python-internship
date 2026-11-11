@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Patients — Sqrock Hospital{% endblock %}
+{% block content %}
+<h1>Patients</h1>
+<div class="grid2">
+  <form method="post" class="panel">
+    <h3>Register patient</h3>
+    <label>Name *<input name="name" required></label>
+    <div class="row">
+      <label>Age<input name="age" type="number" min="0"></label>
+      <label>Gender
+        <select name="gender"><option>Male</option><option>Female</option><option>Other</option></select>
+      </label>
+    </div>
+    <label>Phone<input name="phone"></label>
+    <label>Ailment / reason<input name="ailment"></label>
+    <button class="btn">Register</button>
+  </form>
+
+  <div class="panel">
+    <form method="get" class="search"><input name="q" value="{{ q }}" placeholder="Search by name or ailment…"><button class="btn btn--sm">Search</button></form>
+    <table>
+      <thead><tr><th>ID</th><th>Name</th><th>Age</th><th>Gender</th><th>Phone</th><th>Ailment</th><th></th></tr></thead>
+      <tbody>
+        {% for p in rows %}
+          <tr>
+            <td>{{ p.id }}</td><td>{{ p.name }}</td><td>{{ p.age or '—' }}</td><td>{{ p.gender or '—' }}</td>
+            <td>{{ p.phone or '—' }}</td><td>{{ p.ailment or '—' }}</td>
+            <td><form method="post" action="{{ url_for('delete_patient', pid=p.id) }}"><button class="link-danger">✕</button></form></td>
+          </tr>
+        {% else %}
+          <tr><td colspan="7" class="empty">No patients found.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

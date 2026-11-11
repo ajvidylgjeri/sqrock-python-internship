@@ -1,0 +1,31 @@
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0e1020;--card:#191c2e;--line:#2a2f45;--text:#eef0f8;--muted:#9aa2bd;--brand:#8b5cf6;--brand2:#ec4899}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:
+  radial-gradient(900px 400px at 80% -10%,rgba(139,92,246,.25),transparent),var(--bg);
+  color:var(--text);min-height:100vh;display:flex;justify-content:center;padding:2rem 1rem}
+.wrap{width:min(720px,100%)}
+header{text-align:center;margin-bottom:1.6rem}
+header h1{font-size:1.9rem}
+header p{color:var(--muted);margin-top:.4rem}
+.mode{font-size:.72rem;padding:.15rem .6rem;border-radius:999px;background:#2a2f45;margin-left:.3rem}
+.mode--live{background:#34d399;color:#06281c}
+.prompt-box{display:flex;gap:.6rem;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:.5rem;margin-bottom:.9rem}
+.prompt-box input{flex:1;background:transparent;border:0;color:var(--text);font-size:1rem;padding:.7rem .9rem;outline:none}
+.prompt-box button{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border:0;
+  padding:.7rem 1.5rem;border-radius:10px;font-weight:700;cursor:pointer;font-size:.95rem}
+.prompt-box button:disabled{opacity:.6;cursor:not-allowed}
+.suggestions{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-bottom:1.6rem}
+.suggestions span{background:var(--card);border:1px solid var(--line);color:var(--muted);
+  padding:.35rem .8rem;border-radius:999px;font-size:.82rem;cursor:pointer}
+.suggestions span:hover{color:var(--text);border-color:var(--brand)}
+.stage{background:var(--card);border:1px solid var(--line);border-radius:18px;min-height:360px;
+  display:grid;place-items:center;padding:1.5rem}
+.placeholder{color:var(--muted)}
+.loader{display:flex;flex-direction:column;align-items:center;gap:1rem;color:var(--muted)}
+.spinner{width:42px;height:42px;border:4px solid var(--line);border-top-color:var(--brand);border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+figure{display:flex;flex-direction:column;align-items:center;gap:1rem;width:100%}
+figure img{width:100%;max-width:480px;border-radius:14px;box-shadow:0 20px 50px -20px rgba(0,0,0,.6)}
+figcaption{color:var(--muted);font-size:.9rem;text-align:center}
+.btn{background:#fff;color:#111;text-decoration:none;padding:.6rem 1.3rem;border-radius:10px;font-weight:700;font-size:.9rem}
+.btn:hover{opacity:.9}

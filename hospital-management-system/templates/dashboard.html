@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — Sqrock Hospital{% endblock %}
+{% block content %}
+<h1>Dashboard</h1>
+<div class="cards">
+  <div class="card"><span class="card__icon">🧑‍🤝‍🧑</span><div><strong>{{ stats.patients }}</strong><span>Patients</span></div></div>
+  <div class="card"><span class="card__icon">👩‍⚕️</span><div><strong>{{ stats.doctors }}</strong><span>Doctors</span></div></div>
+  <div class="card"><span class="card__icon">📅</span><div><strong>{{ stats.appointments }}</strong><span>Appointments</span></div></div>
+  <div class="card"><span class="card__icon">💰</span><div><strong>{{ '%.0f'|format(stats.revenue) }}</strong><span>Revenue (paid)</span></div></div>
+</div>
+
+<h2>Recent appointments</h2>
+<table>
+  <thead><tr><th>Date</th><th>Patient</th><th>Doctor</th><th>Status</th></tr></thead>
+  <tbody>
+    {% for a in upcoming %}
+      <tr><td>{{ a.date }}</td><td>{{ a.patient }}</td><td>{{ a.doctor }}</td>
+          <td><span class="badge badge--{{ a.status|lower }}">{{ a.status }}</span></td></tr>
+    {% else %}
+      <tr><td colspan="4" class="empty">No appointments yet.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

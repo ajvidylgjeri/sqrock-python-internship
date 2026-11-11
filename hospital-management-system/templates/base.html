@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{% block title %}Sqrock Hospital{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="logo">🏥 <span>Sqrock Care</span></div>
+    <nav>
+      <a href="{{ url_for('dashboard') }}" class="{{ 'active' if request.endpoint=='dashboard' }}">📊 Dashboard</a>
+      <a href="{{ url_for('patients') }}" class="{{ 'active' if request.endpoint=='patients' }}">🧑‍🤝‍🧑 Patients</a>
+      <a href="{{ url_for('doctors') }}" class="{{ 'active' if request.endpoint=='doctors' }}">👩‍⚕️ Doctors</a>
+      <a href="{{ url_for('appointments') }}" class="{{ 'active' if request.endpoint=='appointments' }}">📅 Appointments</a>
+      <a href="{{ url_for('billing') }}" class="{{ 'active' if request.endpoint=='billing' }}">💳 Billing</a>
+    </nav>
+  </aside>
+  <main class="content">
+    {% with msgs = get_flashed_messages() %}
+      {% if msgs %}<div class="flash">{{ msgs[0] }}</div>{% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+</div>
+</body>
+</html>

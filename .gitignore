@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+# SQLite database generated at runtime
+*.db
+# virtual environments
+venv/
+.venv/
+env/
+.DS_Store
+.env

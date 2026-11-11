@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sqrock Image Studio — AI Image Generator</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>🎨 Sqrock Image Studio</h1>
+    <p>Turn a text prompt into a unique image.
+      <span class="mode mode--{{ mode }}">{{ 'Live AI' if mode == 'live' else 'Offline generator' }}</span>
+    </p>
+  </header>
+
+  <form id="genForm" class="prompt-box">
+    <input id="prompt" placeholder="e.g. a calm sunset over mountains, pastel colors" autocomplete="off" />
+    <button type="submit" id="genBtn">Generate</button>
+  </form>
+
+  <div class="suggestions" id="suggestions">
+    <span>neon city at night</span><span>peaceful forest in fog</span>
+    <span>abstract ocean waves</span><span>cosmic galaxy swirl</span>
+  </div>
+
+  <div id="stage" class="stage">
+    <div class="placeholder" id="placeholder">Your generated image will appear here.</div>
+    <div class="loader" id="loader" hidden><div class="spinner"></div><span>Generating…</span></div>
+    <figure id="result" hidden>
+      <img id="outImg" alt="Generated image" />
+      <figcaption id="outCaption"></figcaption>
+      <a id="downloadBtn" class="btn" download="sqrock-image.png">⬇ Download</a>
+    </figure>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
